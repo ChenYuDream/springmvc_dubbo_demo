@@ -3,23 +3,30 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>wusc.edu.common</groupId>
+        <groupId>cheny.edu.common</groupId>
         <artifactId>edu-common-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../edu-common-parent</relativePath>
     </parent>
 
-    <groupId>cheny.edu.web</groupId>
-    <artifactId>edu-web-boss</artifactId>
-    <version>${edu-web-boss.version}</version>
-    <packaging>war</packaging>
+    <groupId>cheny.edu.service</groupId>
+    <artifactId>edu-service-impl-user</artifactId>
+    <version>${edu-service-impl-user.version}</version>
+    <packaging>jar</packaging>
 
-    <name>edu-web-boss</name>
+    <name>edu-service-impl-user</name>
     <url>http://maven.apache.org</url>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <log4j.leve>debug</log4j.leve>
+        <log4j.ale>debug</log4j.ale>
+    </properties>
+
     <build>
-        <finalName>edu-web-boss</finalName>
+        <finalName>edu-service-impl-user</finalName>
         <resources>
+            <!-- 结合com.alibaba.dubbo.container.Main -->
             <resource>
                 <targetPath>${project.build.directory}/classes</targetPath>
                 <directory>src/main/resources</directory>
@@ -29,45 +36,54 @@
                     <include>**/*.properties</include>
                 </includes>
             </resource>
+            <!-- 结合com.alibaba.dubbo.container.Main -->
+            <resource>
+                <targetPath>${project.build.directory}/classes/META-INF/spring</targetPath>
+                <directory>src/main/resources/spring</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>spring-context.xml</include>
+                </includes>
+            </resource>
         </resources>
         <plugins>
+            <!-- 打包jar文件时，配置manifest文件，加入lib包的jar依赖 -->
             <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.3.7.v20160115</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
-                    <webApp>
-                        <contextPath>/hello</contextPath>
-                    </webApp>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
-                    <stopPort>9899</stopPort>
-                    <stopKey>foo</stopKey>
-                    <stopWait>10</stopWait>
-                    <systemProperties>
-                        <systemProperty>
-                            <name>tapestry.execution-mode</name>
-                            <value>development</value>
-                        </systemProperty>
-                        <systemProperty>
-                            <name>jetty.port</name>
-                            <value>9090</value>
-                        </systemProperty>
-                    </systemProperties>
+                    <classesDirectory>target/classes/</classesDirectory>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.alibaba.dubbo.container.Main</mainClass>
+                            <!-- 打包时 MANIFEST.MF文件不记录的时间戳版本 -->
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>.</Class-Path>
+                        </manifestEntries>
+                    </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>start-jetty</id>
-                        <phase>pre-integration-test</phase>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>run</goal>
+                            <goal>copy-dependencies</goal>
                         </goals>
-                    </execution>
-                    <execution>
-                        <id>stop-jetty</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
+                        <configuration>
+                            <type>jar</type>
+                            <includeTypes>jar</includeTypes>
+                            <outputDirectory>
+                                ${project.build.directory}/lib
+                            </outputDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -75,12 +91,23 @@
     </build>
 
     <dependencies>
-
+        <!--项目依赖 start-->
         <dependency>
-            <groupId>wusc.edu.facade</groupId>
-            <artifactId>edu-facade-user</artifactId>
-            <version>${edu-facade-user.version}</version>
+            <groupId>cheny.edu.service</groupId>
+            <artifactId>edu-service-user</artifactId>
+            <version>${edu-service-user.version}</version>
         </dependency>
+        <dependency>
+            <groupId>cheny.edu.dao</groupId>
+            <artifactId>edu-dao-user</artifactId>
+            <version>${edu-dao-user.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cheny.edu.common</groupId>
+            <artifactId>edu-common-config</artifactId>
+            <version>${edu-common-config.version}</version>
+        </dependency>
+        <!--项目依赖 end-->
 
         <!-- Common Dependency Begin -->
         <dependency>
@@ -105,7 +132,6 @@
             <classifier>jdk15</classifier>
             <scope>compile</scope>
         </dependency>
-
         <dependency>
             <groupId>ognl</groupId>
             <artifactId>ognl</artifactId>
@@ -287,10 +313,6 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-        </dependency>
         <!-- Others End -->
 
         <!-- Mysql Driver Begin -->
@@ -299,39 +321,7 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <!-- Mysql Driver End -->
-        <!--json解析-->
-        <!--解析json -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.6</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.5.3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.5.3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.5.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20140107</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.3.1</version>
-        </dependency>
-        <!--json解析-->
+
         <!-- dubbo 需要的jar start -->
         <dependency>
             <groupId>org.jboss.netty</groupId>
@@ -359,8 +349,7 @@
         </dependency>
         <!-- dubbo 需要的jar end -->
 
-
     </dependencies>
 
-
 </project>
+

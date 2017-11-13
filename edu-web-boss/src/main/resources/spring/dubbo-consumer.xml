@@ -14,7 +14,7 @@
     <dubbo:registry protocol="zookeeper" address="172.16.30.207:2181"/>
 
     <!-- 用户服务接口 -->
-    <dubbo:reference interface="wusc.edu.facade.user.service.UserService" id="userService" check="false"/>
+    <dubbo:reference interface="cheny.edu.service.UserService" id="userService" check="false"/>
 
 
 </beans>  
