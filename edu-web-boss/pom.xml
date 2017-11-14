@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>wusc.edu.common</groupId>
+        <groupId>cheny.edu.common</groupId>
         <artifactId>edu-common-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../edu-common-parent</relativePath>
@@ -30,57 +30,34 @@
                 </includes>
             </resource>
         </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.3.7.v20160115</version>
-                <configuration>
-                    <webApp>
-                        <contextPath>/hello</contextPath>
-                    </webApp>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
-                    <stopPort>9899</stopPort>
-                    <stopKey>foo</stopKey>
-                    <stopWait>10</stopWait>
-                    <systemProperties>
-                        <systemProperty>
-                            <name>tapestry.execution-mode</name>
-                            <value>development</value>
-                        </systemProperty>
-                        <systemProperty>
-                            <name>jetty.port</name>
-                            <value>9090</value>
-                        </systemProperty>
-                    </systemProperties>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>start-jetty</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>stop-jetty</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
     </build>
 
     <dependencies>
 
+        <!--项目依赖start -->
         <dependency>
-            <groupId>wusc.edu.facade</groupId>
-            <artifactId>edu-facade-user</artifactId>
-            <version>${edu-facade-user.version}</version>
+            <groupId>cheny.edu.service</groupId>
+            <artifactId>edu-service-user</artifactId>
+            <version>${edu-service-user.version}</version>
         </dependency>
+        <dependency>
+            <groupId>cheny.edu.common</groupId>
+            <artifactId>edu-common-config</artifactId>
+            <version>${edu-common-config.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cheny.edu.common</groupId>
+            <artifactId>edu-common-utils</artifactId>
+            <version>${edu-common-utils.version}</version>
+        </dependency>
+        <!--项目依赖end-->
+
+        <!--实用工具 省去写setter getter toString 等 start-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!--实用工具 省去写setter getter toString 等 end-->
 
         <!-- Common Dependency Begin -->
         <dependency>
@@ -287,10 +264,6 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-        </dependency>
         <!-- Others End -->
 
         <!-- Mysql Driver Begin -->
@@ -333,10 +306,6 @@
         </dependency>
         <!--json解析-->
         <!-- dubbo 需要的jar start -->
-        <dependency>
-            <groupId>org.jboss.netty</groupId>
-            <artifactId>netty</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>

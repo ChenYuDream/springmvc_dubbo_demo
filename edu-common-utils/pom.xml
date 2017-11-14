@@ -8,10 +8,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>edu.common.utils</artifactId>
+    <artifactId>edu-common-utils</artifactId>
     <packaging>jar</packaging>
 
-    <name>edu.common.utils</name>
+    <name>edu-common-utils</name>
     <url>http://maven.apache.org</url>
 
     <properties>

@@ -10,6 +10,42 @@
     <name>edu-common-parent</name>
     <url>http://maven.apache.org</url>
 
+    <modules>
+        <module>../edu-common-config</module>
+        <module>../edu-common-pojo</module>
+        <module>../edu-common-utils</module>
+        <module>../edu-common-web</module>
+        <module>../edu-dao-user</module>
+        <module>../edu-service-user</module>
+        <module>../edu-service-impl-user</module>
+        <module>../edu-web-boss</module>
+    </modules>
+    <!-- 全局属性配置 -->
+    <profiles>
+
+        <!-- 开发环境 -->
+        <profile>
+            <id>main</id>
+            <properties>
+                <!-- 部署环境(对应配置文件版本) -->
+                <env>main</env>
+                <maven.test.skip>false</maven.test.skip>
+            </properties>
+            <!-- 设置默认环境 -->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <!-- 测试环境  -->
+        <profile>
+            <id>test-mysql</id>
+            <properties>
+                <!-- 部署环境(对应配置文件版本) -->
+                <env>test-mysql</env>
+            </properties>
+        </profile>
+    </profiles>
+
     <distributionManagement>
         <repository>
             <id>nexus-releases</id>
@@ -223,11 +259,6 @@
             </dependency>
 
             <!--dubbo需要的jar-->
-            <dependency>
-                <groupId>org.jboss.netty</groupId>
-                <artifactId>netty</artifactId>
-                <version>3.2.10.Final</version>
-            </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>dubbo</artifactId>

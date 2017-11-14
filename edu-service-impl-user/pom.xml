@@ -107,6 +107,11 @@
             <artifactId>edu-common-config</artifactId>
             <version>${edu-common-config.version}</version>
         </dependency>
+        <dependency>
+            <groupId>cheny.edu.common</groupId>
+            <artifactId>edu-common-utils</artifactId>
+            <version>${edu-common-utils.version}</version>
+        </dependency>
         <!--项目依赖 end-->
 
         <!-- Common Dependency Begin -->
@@ -323,10 +328,6 @@
         <!-- Mysql Driver End -->
 
         <!-- dubbo 需要的jar start -->
-        <dependency>
-            <groupId>org.jboss.netty</groupId>
-            <artifactId>netty</artifactId>
-        </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>

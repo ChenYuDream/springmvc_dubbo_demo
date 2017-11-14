@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>edu-common-parent</artifactId>
+        <groupId>cheny.edu.common</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../edu-common-parent/pom.xml</relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>edu-common-web</artifactId>
+    <packaging>jar</packaging>
+    <name>edu-common-web</name>
+    <url>http://maven.apache.org</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>cheny.edu.common</groupId>
+            <artifactId>edu-common-pojo</artifactId>
+            <version>${edu-common-pojo.version}</version>
+        </dependency>
+
+        <!--实用工具 省去写setter getter toString 等 start-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!--实用工具 省去写setter getter toString 等 end-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>edu-common-web</finalName>
+    </build>
+</project>
