@@ -21,7 +21,7 @@ public class User implements Serializable {
     /**
      * 真实姓名
      */
-    private String nickName;
+    private String nickname;
     /**
      * 用户名
      */

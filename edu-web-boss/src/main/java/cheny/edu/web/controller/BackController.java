@@ -16,6 +16,7 @@ public class BackController {
 
     /**
      * 跳转到后台主页面
+     *
      * @return
      */
     @GetMapping("main")
@@ -24,7 +25,7 @@ public class BackController {
     }
 
     @GetMapping("user")
-    public String toUserList(){
+    public String toUserList() {
         return "back/user_list";
     }
 }

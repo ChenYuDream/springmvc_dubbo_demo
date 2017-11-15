@@ -34,7 +34,7 @@ var avalonFn = {
 
 /**
  * 为数组定义一个根据值移除元素的函数
- * @param val
+ * @params val
  */
 Array.prototype.removeByValue = function (val) {
     for (var i = 0; i < this.length; i++) {
@@ -48,8 +48,8 @@ Array.prototype.removeByValue = function (val) {
 var jsonUtil = {
     /**
      * 合并json
-     * @param jsonObj1
-     * @param jsonObj2
+     * @params jsonObj1
+     * @params jsonObj2
      * @returns {{}}
      */
     mergeJsonObj: function (jsonObj1, jsonObj2) {
@@ -74,7 +74,7 @@ var jsonUtil = {
  */
 var layerUtil = {
     iFrame: function (url, title, area) {
-        parent.layui.layer.open({
+        layui.layer.open({
             title: title,
             type: 2,
             area: area,
@@ -152,14 +152,14 @@ var layerUtil = {
     },
     /**
      * 操作失败的弹窗
-     * @param msg
+     * @params msg
      */
     fail: function (msg) {
         parent.layui.layer.msg(msg, {icon: 5, anim: 6});
     },
     /**
      * 操作成功弹窗
-     * @param msg
+     * @params msg
      */
     success: function (msg) {
         parent.layui.layer.msg(msg, {icon: 1});
@@ -175,10 +175,10 @@ var layerUtil = {
 var ajaxUtil = {
     /**
      * post 只用处理code==0的情况
-     * @param url
-     * @param dataStr
-     * @param fn
-     * @param isLoading
+     * @params url
+     * @params dataStr
+     * @params fn
+     * @params isLoading
      */
     post: function (url, dataStr, isLoading, fn) {
         var currentIndex;
@@ -186,6 +186,41 @@ var ajaxUtil = {
             type: 'post',
             url: url,
             data: dataStr,
+            dataType: "json",
+            timeout: 10000,
+            beforeSend: function () {
+                if (isLoading) {
+                    currentIndex = layerUtil.loading();
+                }
+            },
+            success: function (data) {
+                if (isLoading) {
+                    layerUtil.closeIndex(currentIndex);
+                }
+                if (data.code >= 0) {
+                    if (fn && typeof fn == "function") {
+                        fn(data);
+                    } else {
+                        return;
+                    }
+                } else {
+                    layerUtil.fail("操作失败");
+                }
+            }
+        });
+    },
+    /**
+     * post 只用处理code==0的情况
+     * @params url
+     * @params dataStr
+     * @params fn
+     * @params isLoading
+     */
+    get: function (url, isLoading, fn) {
+        var currentIndex;
+        $.ajax({
+            type: 'get',
+            url: url,
             dataType: "json",
             timeout: 10000,
             beforeSend: function () {

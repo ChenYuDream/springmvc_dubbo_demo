@@ -19,6 +19,8 @@
         <module>../edu-service-user</module>
         <module>../edu-service-impl-user</module>
         <module>../edu-web-boss</module>
+        <module>../edu-common-mq-customer</module>
+        <module>../edu-common-mq-producer</module>
     </modules>
     <!-- 全局属性配置 -->
     <profiles>
@@ -69,6 +71,8 @@
         <edu-service-user.version>1.0-SNAPSHOT</edu-service-user.version>
         <edu-service-impl-user.version>1.0-SNAPSHOT</edu-service-impl-user.version>
         <edu-web-boss.version>1.0-SNAPSHOT</edu-web-boss.version>
+        <edu-common-mq-producer.version>1.0-SNAPSHOT</edu-common-mq-producer.version>
+        <edu-common-mq-customer.version>1.0-SNAPSHOT</edu-common-mq-customer.version>
 
         <!-- frameworks -->
         <org.springframework.version>4.3.12.RELEASE</org.springframework.version>
@@ -450,6 +454,11 @@
                 <version>${org.apache.activeMq.version}</version>
             </dependency>
             <!-- activeMq消息队列 end-->
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>mail</artifactId>
+                <version>1.4.7</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

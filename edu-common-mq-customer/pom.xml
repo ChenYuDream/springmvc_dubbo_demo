@@ -1,45 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
     <parent>
-        <groupId>cheny.edu.common</groupId>
         <artifactId>edu-common-parent</artifactId>
+        <groupId>cheny.edu.common</groupId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../edu-common-parent</relativePath>
+        <relativePath>../edu-common-parent/pom.xml</relativePath>
     </parent>
 
-    <groupId>cheny.edu.web</groupId>
-    <artifactId>edu-web-boss</artifactId>
-    <version>${edu-web-boss.version}</version>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>edu-common-mq-customer</artifactId>
     <packaging>war</packaging>
-
-    <name>edu-web-boss</name>
+    <name>edu-common-mq-customer</name>
     <url>http://maven.apache.org</url>
 
-    <build>
-        <finalName>edu-web-boss</finalName>
-        <resources>
-            <resource>
-                <targetPath>${project.build.directory}/classes</targetPath>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>**/*.xml</include>
-                    <include>**/*.properties</include>
-                </includes>
-            </resource>
-        </resources>
-    </build>
-
     <dependencies>
-
-        <!--项目依赖start -->
-        <dependency>
-            <groupId>cheny.edu.service</groupId>
-            <artifactId>edu-service-user</artifactId>
-            <version>${edu-service-user.version}</version>
-        </dependency>
+        <!--依赖其他项目-->
         <dependency>
             <groupId>cheny.edu.common</groupId>
             <artifactId>edu-common-config</artifactId>
@@ -47,27 +22,10 @@
         </dependency>
         <dependency>
             <groupId>cheny.edu.common</groupId>
-            <artifactId>edu-common-utils</artifactId>
-            <version>${edu-common-utils.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cheny.edu.common</groupId>
             <artifactId>edu-common-pojo</artifactId>
             <version>${edu-common-pojo.version}</version>
         </dependency>
-        <dependency>
-            <groupId>cheny.edu.common</groupId>
-            <artifactId>edu-common-mq-producer</artifactId>
-            <version>${edu-common-mq-producer.version}</version>
-        </dependency>
-        <!--项目依赖end-->
-
-        <!--实用工具 省去写setter getter toString 等 start-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <!--实用工具 省去写setter getter toString 等 end-->
+        <!--其他项目依赖 end-->
 
         <!-- Common Dependency Begin -->
         <dependency>
@@ -92,7 +50,6 @@
             <classifier>jdk15</classifier>
             <scope>compile</scope>
         </dependency>
-
         <dependency>
             <groupId>ognl</groupId>
             <artifactId>ognl</artifactId>
@@ -150,14 +107,6 @@
             <artifactId>javassist</artifactId>
         </dependency>
         <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.transaction</groupId>
-            <artifactId>jta</artifactId>
-        </dependency>
-        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
         </dependency>
@@ -168,6 +117,10 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
         </dependency>
 
         <!-- Common Dependency End -->
@@ -199,22 +152,6 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-expression</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-instrument</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-instrument-tomcat</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
             <artifactId>spring-jms</artifactId>
         </dependency>
         <dependency>
@@ -234,112 +171,29 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-pool</artifactId>
+        </dependency>
+        <!--实用工具 省去写setter getter toString 等 start-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!--实用工具 省去写setter getter toString 等 end-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc-portlet</artifactId>
-        </dependency>
-        <!-- Spring Dependency End -->
-
-        <!-- MyBatis Dependency Begin -->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-        </dependency>
-        <!-- MyBatis Dependency End -->
-
-        <!-- Others Begin -->
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>jsp-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-        </dependency>
-        <!-- Others End -->
-
-        <!-- Mysql Driver Begin -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <!-- Mysql Driver End -->
-        <!--json解析-->
-        <!--解析json -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.6</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.5.3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.5.3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>2.5.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20140107</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.3.1</version>
-        </dependency>
-        <!--json解析-->
-        <!-- dubbo 需要的jar start -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>dubbo</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>com.101tec</groupId>
-            <artifactId>zkclient</artifactId>
-        </dependency>
-        <!-- dubbo 需要的jar end -->
-
-
     </dependencies>
-
-
 </project>

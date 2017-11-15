@@ -3071,7 +3071,7 @@ avalon.scan = function (elem, vmodel) {
 }
 
 //http://www.w3.org/TR/html5/syntax.html#void-elements
-var stopScan = oneObject("area,base,basefont,br,col,command,embed,hr,img,input,link,meta,param,source,track,wbr,noscript,script,style,textarea".toUpperCase())
+var stopScan = oneObject("area,base,basefont,br,col,command,embed,hr,img,input,link,meta,params,source,track,wbr,noscript,script,style,textarea".toUpperCase())
 
 function checkScan(elem, callback, innerHTML) {
     var id = setTimeout(function () {
@@ -3203,7 +3203,7 @@ function scanAttr(elem, vmodels, match) {
                             expr: newValue,
                             oneTime: oneTime,
                             uuid: "_" + (++bindingID),
-                            //chrome与firefox下Number(param)得到的值不一样 #855
+                            //chrome与firefox下Number(params)得到的值不一样 #855
                             priority: (directives[type].priority || type.charCodeAt(0) * 10) + (Number(param.replace(/\D/g, "")) || 0)
                         }
                         if (type === "html" || type === "text") {
@@ -5186,7 +5186,7 @@ avalon.directive("repeat", {
                 decorateProxy(proxy, binding, xtype)
             } else {
 //                if (xtype === "array") {
-//                    proxy[param] = value[i]
+//                    proxy[params] = value[i]
 //                }
                 fragments.push({})
                 retain[keyOrId] = true
@@ -5204,7 +5204,7 @@ avalon.directive("repeat", {
             if (xtype === "array") {
                 proxy.$first = i === 0
                 proxy.$last = i === length - 1
-                // proxy[param] = value[i]
+                // proxy[params] = value[i]
             } else {
                 proxy.$val = toJson(value[keyOrId]) //这里是处理vm.object = newObject的情况 
             }

@@ -13,16 +13,17 @@
 </head>
 <body>
 <div class="layui-form" style="padding: 20px">
+    <input type="hidden" name="id" value="${user.id}">
     <div class="layui-form-item">
-        <label class="layui-form-label">姓名：</label>
+        <label class="layui-form-label">用户昵称：</label>
         <div class="layui-input-inline">
-            <input type="text" name="nickName" placeholder="请输入姓名" value="${user.nickName}" class="layui-input">
+            <input type="text" name="nickname" placeholder="请输入用户昵称" value="${user.nickname}" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">用户名：</label>
+        <label class="layui-form-label">用户账号：</label>
         <div class="layui-input-inline">
-            <input type="text" name="userName" placeholder="请输入用户" value="${user.username}" class="layui-input">
+            <input type="text" name="username" placeholder="请输入用户账号" value="${user.username}" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
@@ -47,9 +48,11 @@
 <script type="text/javascript">
     //监听提交
     form.on('submit(save)', function (data) {
-        layer.alert(JSON.stringify(data.field), {
-            title: '最终的提交信息'
-        })
+        ajaxUtil.post("${ctx}/user/save", data.field, true, function (data) {
+            layerUtil.closeAll();
+            layerUtil.success("保存成功");
+            parent.vm.loadTableData();
+        });
         return false;
     });
 </script>

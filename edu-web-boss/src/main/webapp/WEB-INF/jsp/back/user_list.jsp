@@ -29,14 +29,14 @@
         <tbody>
         <tr ms-repeat="tableData">
             <td>{{el.id}}</td>
-            <td>{{el.nickName}}</td>
+            <td>{{el.nickname}}</td>
             <td>{{el.username}}</td>
             <td>{{el.email}}</td>
             <td>{{el.phoneNum}}</td>
             <td>
                 <button class="layui-btn layui-btn-mini layui-btn-primary" ms-on-click="openIframe(el.id)">编辑</button>
-                <button class="layui-btn layui-btn-mini layui-btn-danger">删除</button>
-                <button class="layui-btn layui-btn-mini">发送邮件</button>
+                <button class="layui-btn layui-btn-mini layui-btn-danger" ms-on-click="deleteUser(el)">删除</button>
+                <button class="layui-btn layui-btn-mini" ms-on-click="sendEmail(el)">发送邮件</button>
             </td>
         </tr>
         </tbody>
@@ -52,6 +52,17 @@
         },
         openIframe: function (id) {
             layerUtil.iFrame("${ctx}/user/form/" + id || "", "编辑/添加用户", ["500px", "400px"]);
+        },
+        deleteUser: function (el) {
+            ajaxUtil.get("${ctx}/user/delete/" + el.id, true, function (data) {
+                layerUtil.success("删除成功");
+                vm.loadTableData();
+            });
+        },
+        sendEmail: function (el) {
+            ajaxUtil.post("${ctx}/user/mail/send/" + el.id, "", true, function (data) {
+                layerUtil.success("发送给" + el.email + "的邮件发送成功");
+            });
         }
     }
     vm = avalonFn.define("user", vm);

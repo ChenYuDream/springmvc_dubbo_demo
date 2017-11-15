@@ -8,7 +8,7 @@
 
     /*
      * Create jParticle animation.
-     * @param {Object} options Few jParticle options.
+     * @params {Object} options Few jParticle options.
      * @return {Object} jQuery object for chaining.
      */
     $.fn.jParticle = function jParticle(options) {
@@ -80,8 +80,8 @@
 
     /*
      * Create a particles sandbox instance.
-     * @param {Object} element Element for the sandbox.
-     * @param {Object} params Few sandbox's params.
+     * @params {Object} element Element for the sandbox.
+     * @params {Object} params Few sandbox's params.
      * @return {Object} Particles sandbox object.
      */
     createParticlesSandbox = function createParticlesSandbox(element, params) {
@@ -98,8 +98,8 @@
 
         /*
          * Initialize the sandbox
-         * @param {Object} element Element for the sandbox.
-         * @param {Object} params Few sandbox's params.
+         * @params {Object} element Element for the sandbox.
+         * @params {Object} params Few sandbox's params.
          */
         ParticlesSandbox.initialize = function initialize(element, params) {
 
@@ -112,7 +112,7 @@
 
         /*
          * Initialize sandbox's params.
-         * @param {Object} params Few sandbox's params.
+         * @params {Object} params Few sandbox's params.
          */
         ParticlesSandbox.initParams = function initParams(params) {
 
@@ -142,7 +142,7 @@
 
         /*
          * Initialize the sandbox's html.
-         * @param {Object} element Element for the sandbox.
+         * @params {Object} element Element for the sandbox.
          */
         ParticlesSandbox.initHTML = function initHTML(element) {
 
@@ -302,10 +302,10 @@
 
         /*
          * Draw a link between two particles.
-         * @param {int} x First object abscissa coords.
-         * @param {int} y First object ordered coords.
-         * @param {int} x2 Second object abscissa coords.
-         * @param {int} y2 Second object ordered coords.
+         * @params {int} x First object abscissa coords.
+         * @params {int} y First object ordered coords.
+         * @params {int} x2 Second object abscissa coords.
+         * @params {int} y2 Second object ordered coords.
          */
         ParticlesSandbox.drawLink = function drawLink(x, y, x2, y2) {
 
@@ -333,10 +333,10 @@
 
         /*
          * Get opacity for link two particles.
-         * @param {int} x First object abscissa coords.
-         * @param {int} y First object ordered coords.
-         * @param {int} x2 Second object abscissa coords.
-         * @param {int} y2 Second object ordered coords.
+         * @params {int} x First object abscissa coords.
+         * @params {int} y First object ordered coords.
+         * @params {int} x2 Second object abscissa coords.
+         * @params {int} y2 Second object ordered coords.
          * @return {int} 0 <= opacity <= 1
          */
         ParticlesSandbox.getOpacityLink = function getOpacityLink(x, y, x2, y2) {
@@ -393,8 +393,8 @@
 
         /*
          * Create a particle instance.
-         * @param {Object} canvas DOM element.
-         * @param {Object} params Few particle's params.
+         * @params {Object} canvas DOM element.
+         * @params {Object} params Few particle's params.
          * @return {Object} Particle object.
          */
         createParticle = function createParticle(canvas, params) {
@@ -408,8 +408,8 @@
 
             /*
              * Initialize the particle.
-             * @param {Object} canvas DOM element.
-             * @param {Object} params Few particle's params.
+             * @params {Object} canvas DOM element.
+             * @params {Object} params Few particle's params.
              */
             Particle.initialize = function initialize(canvas, params) {
 
@@ -459,7 +459,7 @@
 
             /*
              * Set the context to draw particles.
-             * @param {Object} canvas Canvas.
+             * @params {Object} canvas Canvas.
              */
             Particle.setCanvasContext = function setCanvasContext(canvas) {
 
@@ -512,7 +512,7 @@
 
             /*
              * Return position of particle.
-             * @param {string} axis Optionnal axis.
+             * @params {string} axis Optionnal axis.
              * @return {int|Object} Return object if axis is not defined, else return int.
              */
             Particle.getPosition = function getPosition(axis) {
@@ -546,9 +546,9 @@
 
     /*
      * Get rand number between x and y.
-     * @param {int} x Minimal number.
-     * @param {int} y Maximal number.
-     * @param {Boolean} round True is value shouldn't be round.
+     * @params {int} x Minimal number.
+     * @params {int} y Maximal number.
+     * @params {Boolean} round True is value shouldn't be round.
      * @return {int} Rand number.
      */
     Utils.getRandNumber = function getRandNumber(x, y, round) {
@@ -577,10 +577,10 @@
 
     /*
      * Get distance between to cartesian points.
-     * @param {int} x First object abscissa coords.
-     * @param {int} y First object ordered coords.
-     * @param {int} x2 Second object abscissa coords.
-     * @param {int} y2 Second object ordered coords.
+     * @params {int} x First object abscissa coords.
+     * @params {int} y First object ordered coords.
+     * @params {int} x2 Second object abscissa coords.
+     * @params {int} y2 Second object ordered coords.
      * @return {int} Distance.
      */
     Utils.getDistance = function getDistance(x, y, x2, y2) {
@@ -590,8 +590,8 @@
 
     /*
      * Get mouse position.
-     * @param {Object} event The HTML DOM events.
-     * @param {Object} element The DOM element.
+     * @params {Object} event The HTML DOM events.
+     * @params {Object} element The DOM element.
      * @return {Object} x/y position.
      */
     Utils.getMousePosition = function getMousePosition(event, element) {
